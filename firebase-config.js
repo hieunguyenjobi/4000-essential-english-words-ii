@@ -21,7 +21,7 @@
  * Để trống apiKey nếu chưa cấu hình — app vẫn chạy offline bình thường.
  */
 window.FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBKpfGmi9Cw8yiH3Z40NHE2uIzf62RV51",
+  apiKey: "AIzaSyBKpfGmi9Cw8yiH3Z40NHE2uIzf62RV51s",
   authDomain: "wordsii.firebaseapp.com",
   projectId: "wordsii",
   storageBucket: "wordsii.firebasestorage.app",
