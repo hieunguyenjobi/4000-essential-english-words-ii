@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>4000 Essential English Word II</title>
+  <meta name="description" content="4000 Essential English Word II — học từ vựng với flashcard, quiz, story và FSRS. Chạy offline.">
+  <meta name="theme-color" content="#eef0ff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Word II">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Google Fonts (tùy chọn). Offline vẫn chạy bình thường nhờ font dự phòng trong style.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap">
+
+  <!-- Áp dụng Dark Mode TRƯỚC khi vẽ trang để không bị nháy sáng.
+       Khóa lưu trữ phải trùng STORAGE_KEY trong app.js. -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("ielts-vocab-lab-theme");
+        if (theme === "dark" || theme === "light") {
+          document.documentElement.setAttribute("data-theme", theme);
+          return;
+        }
+        var raw = localStorage.getItem("ielts-vocab-lab");
+        var s = raw ? JSON.parse(raw).settings : null;
+        if (s && typeof s.darkMode === "boolean") {
+          document.documentElement.setAttribute("data-theme", s.darkMode ? "dark" : "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ======================================================================
+       ICON SPRITE (inline SVG, không phụ thuộc file ngoài)
+       ====================================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-review" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5M12 8v4.2l2.8 1.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 14.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3h0a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5h0a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8v0a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5zM15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 22c4 0 7-2.8 7-6.8 0-3-1.8-5-3.5-6.7-.4 1.4-1.2 2.3-2.2 2.7C13.7 8 12.3 4.8 9 2c.3 3.2-1.4 5.2-3 7.2C4.600 11 5 13 5 15.200 5 19.200 8 22 12 22z" fill="currentColor"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-cross" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3h10a3 3 0 0 1 3 3v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.500 9.500a2.500 2.500 0 1 1 3.500 2.300c-.7.400-1 .9-1 1.700M12 17v.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.500A2.500 2.500 0 0 1 6.500 3H20v15H6.500A2.500 2.500 0 0 0 4 20.500zM4 20.500A2.500 2.500 0 0 0 6.500 23H20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-flip" viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5m0 0L8 9m4-4 4 4M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Nền glassmorphism: các quầng sáng mờ phía sau lớp kính -->
+  <div class="backdrop" aria-hidden="true">
+    <span class="orb orb--a"></span>
+    <span class="orb orb--b"></span>
+    <span class="orb orb--c"></span>
+  </div>
+
+  <a class="skip-link" href="#main" data-i18n="skip_link">Bỏ qua điều hướng</a>
+
+  <div class="app-shell" id="app">
+
+    <!-- ====================================================================
+         HEADER (luôn hiển thị)
+         ==================================================================== -->
+    <header class="app-header glass" id="app-header">
+      <button class="brand" type="button" data-nav="dashboard" aria-label="Về trang chủ — 4000 Essential English Word II">
+        <span class="brand__mark" aria-hidden="true">IV</span>
+        <span class="brand__text">
+          <strong>4000 Essential English Word II</strong>
+          <small data-i18n="brand_sub">Book 2 · Flashcard · FSRS</small>
+        </span>
+      </button>
+
+      <div class="header-stats" aria-label="Thống kê nhanh">
+        <button class="chip chip--profile" type="button" data-action="open-profiles" title="Tài khoản học đang dùng" id="hdr-profile-btn">
+          <b id="hdr-profile">Learner</b>
+        </button>
+        <span class="chip chip--level" title="Cấp độ hiện tại">
+          Lv <b id="hdr-level">1</b>
+        </span>
+        <span class="chip chip--xp" title="Tổng XP">
+          <svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+          <b id="hdr-xp">0</b>
+        </span>
+        <span class="chip chip--streak" title="Chuỗi ngày học liên tiếp">
+          <svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg>
+          <b id="hdr-streak">0</b>
+        </span>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn-lang" type="button" data-action="toggle-lang" id="btn-lang" title="Language / Ngôn ngữ" aria-label="Switch language">
+          <span id="lang-label">VI</span>
+        </button>
+        <button class="icon-btn" type="button" data-action="toggle-theme" aria-label="Đổi giao diện sáng/tối" data-i18n-aria="toggle_theme" id="btn-theme">
+          <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="icon-btn" type="button" data-action="open-settings" aria-label="Mở cài đặt" data-i18n-aria="open_settings">
+          <svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="app-main" tabindex="-1">
+
+      <!-- ==================================================================
+           1. DASHBOARD
+           ================================================================== -->
+      <section class="screen is-active" id="screen-dashboard" data-screen="dashboard" aria-labelledby="dash-title">
+
+        <!-- PWA install banner (ẩn khi đã cài / đã bỏ qua) -->
+        <div class="install-banner glass" id="install-banner" hidden role="region" aria-label="Cài đặt ứng dụng">
+          <div class="install-banner__text">
+            <strong data-i18n="install_title">Cài Word II vào máy</strong>
+            <span class="muted small" id="install-banner-sub" data-i18n="install_sub">Học offline, mở nhanh từ màn hình chính</span>
+          </div>
+          <div class="install-banner__actions">
+            <button class="btn btn--primary btn--sm" type="button" id="btn-install" data-action="install-app" data-i18n="install_btn">Cài app</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-action="install-dismiss" data-i18n="install_later">Để sau</button>
+          </div>
+        </div>
+
+        <div class="hero glass">
+          <div class="hero__intro">
+            <h1 id="dash-title" data-i18n="dash_title">Học từ vựng, nhớ lâu hơn mỗi ngày</h1>
+            <p id="dash-greeting" class="muted">Mỗi ngày vài phút, đúng lúc cần ôn lại.</p>
+            <div class="hero__actions">
+              <button class="btn btn--primary btn--lg" type="button" id="btn-review-today" data-action="start-review">
+                <svg class="icon" aria-hidden="true"><use href="#i-review"/></svg>
+                <span data-i18n="review_today">Review Today</span>
+                <span class="count-pill" id="review-today-count">0</span>
+              </button>
+              <button class="btn btn--soft btn--lg" type="button" id="btn-quick-study" data-action="start-quick">
+                <svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+                <span data-i18n="quick_study">Học nhanh 5 phút</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Vòng tiến độ Level. app.js đặt style="--p: 0..100" -->
+          <div class="level-ring" id="level-ring" style="--p: 0" role="img" aria-label="Tiến độ đến cấp tiếp theo">
+            <div class="level-ring__inner">
+              <small>Level</small>
+              <strong id="level-number">1</strong>
+              <span id="xp-progress-text">0 / 300 XP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-grid" id="dash-stats">
+          <article class="stat glass">
+            <svg class="icon stat__icon stat__icon--streak" aria-hidden="true"><use href="#i-flame"/></svg>
+            <div>
+              <strong id="stat-streak">0</strong>
+              <span data-i18n="stat_streak">ngày liên tiếp</span>
+            </div>
+          </article>
+          <article class="stat glass">
+            <svg class="icon stat__icon stat__icon--xp" aria-hidden="true"><use href="#i-bolt"/></svg>
+            <div>
+              <strong id="stat-xp">0</strong>
+              <span data-i18n="stat_xp">tổng XP</span>
+            </div>
+          </article>
+          <article class="stat glass">
+            <svg class="icon stat__icon stat__icon--mastered" aria-hidden="true"><use href="#i-check"/></svg>
+            <div>
+              <strong><span id="stat-mastered">0</span><small> / <span id="stat-total-words">0</span></small></strong>
+              <span data-i18n="stat_mastered">từ đã thuộc</span>
+            </div>
+          </article>
+          <article class="stat glass">
+            <svg class="icon stat__icon stat__icon--due" aria-hidden="true"><use href="#i-review"/></svg>
+            <div>
+              <strong id="stat-due">0</strong>
+              <span data-i18n="stat_due">từ cần ôn hôm nay</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-head">
+          <h2 data-i18n="units_heading">Các Unit</h2>
+          <div class="filters" role="group" aria-label="Lọc Unit" data-i18n-aria="filter_units_aria" id="unit-filters">
+            <button type="button" class="filter is-active" data-filter="all" data-i18n="filter_all">Tất cả</button>
+            <button type="button" class="filter" data-filter="learning" data-i18n="filter_learning">Đang học</button>
+            <button type="button" class="filter" data-filter="done" data-i18n="filter_done">Hoàn thành</button>
+            <button type="button" class="filter" data-filter="due" data-i18n="filter_due">Cần ôn</button>
+          </div>
+        </div>
+
+        <!-- app.js render 30 thẻ Unit vào đây từ #tpl-unit-card -->
+        <div class="unit-grid" id="unit-grid"></div>
+        <p class="empty-note" id="unit-grid-empty" data-i18n="units_empty" hidden>Chưa có Unit nào khớp bộ lọc này.</p>
+      </section>
+
+      <!-- ==================================================================
+           2. UNIT HUB (chọn chế độ học cho một Unit)
+           ================================================================== -->
+      <section class="screen" id="screen-unit" data-screen="unit" aria-labelledby="unit-hub-title">
+        <div class="topbar">
+          <button class="icon-btn" type="button" data-action="back" aria-label="Quay lại">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+          </button>
+          <div class="topbar__title">
+            <h2 id="unit-hub-title">Unit 1</h2>
+            <p id="unit-hub-story" class="muted">Tên câu chuyện</p>
+          </div>
+        </div>
+
+        <div class="glass panel unit-summary">
+          <div class="unit-summary__bar">
+            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="unit-hub-progress">
+              <span class="progress__fill" id="unit-hub-progress-fill" style="width:0%"></span>
+            </div>
+            <p class="muted"><b id="unit-hub-mastered">0</b> / <b id="unit-hub-total">20</b> từ đã thuộc · <b id="unit-hub-due">0</b> từ cần ôn</p>
+          </div>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card glass" type="button" data-action="start-flashcard">
+            <svg class="icon mode-card__icon" aria-hidden="true"><use href="#i-cards"/></svg>
+            <strong data-i18n="hub_flashcard">Flashcard</strong>
+            <span data-i18n="hub_flashcard_sub">Lật thẻ, tự đánh giá Again hoặc Good</span>
+          </button>
+          <button class="mode-card glass" type="button" data-action="start-quiz">
+            <svg class="icon mode-card__icon" aria-hidden="true"><use href="#i-quiz"/></svg>
+            <strong data-i18n="hub_quiz">Quiz</strong>
+            <span>Tự thích ứng: từ càng vững, câu hỏi càng khó</span>
+          </button>
+          <button class="mode-card glass" type="button" data-action="open-story">
+            <svg class="icon mode-card__icon" aria-hidden="true"><use href="#i-book"/></svg>
+            <strong data-i18n="hub_story">Story</strong>
+            <span data-i18n="hub_story_sub">Đọc truyện, chạm vào từ để xem nghĩa</span>
+          </button>
+        </div>
+
+        <div class="section-head">
+          <h2 data-i18n="hub_practice">Luyện tập theo kỹ năng</h2>
+          <p class="muted small">Mỗi lượt 10 từ, ưu tiên từ đến hạn và từ mới</p>
+        </div>
+        <div class="practice-grid" id="practice-grid">
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="typing">
+            <strong data-i18n="practice_type">Gõ từ</strong>
+            <span data-i18n="practice_type_sub">Nhớ · từ nghĩa hoặc định nghĩa</span>
+          </button>
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="dictation">
+            <strong data-i18n="practice_listen">Nghe và gõ</strong>
+            <span data-i18n="practice_listen_sub">Nhớ · nghe rồi viết đúng chính tả</span>
+          </button>
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="story_cloze">
+            <strong data-i18n="practice_story">Điền vào truyện</strong>
+            <span data-i18n="practice_story_sub">Hiểu · câu trích từ truyện</span>
+          </button>
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="cloze_t">
+            <strong data-i18n="practice_cloze">Điền từ vào câu</strong>
+            <span data-i18n="practice_cloze_sub">Vận dụng · tự gõ đúng dạng từ</span>
+          </button>
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="unscramble">
+            <strong data-i18n="practice_order">Sắp xếp câu</strong>
+            <span data-i18n="practice_order_sub">Vận dụng · ghép từ thành câu</span>
+          </button>
+          <button class="practice-btn glass" type="button" data-action="start-practice" data-ptype="write">
+            <strong data-i18n="practice_write">Viết câu</strong>
+            <span data-i18n="practice_write_sub">Vận dụng · tự viết, so câu mẫu</span>
+          </button>
+        </div>
+
+        <button class="test-card glass" type="button" id="unit-test-card" data-action="start-test" data-passed="false">
+          <svg class="icon mode-card__icon" aria-hidden="true"><use href="#i-check"/></svg>
+          <strong data-i18n="hub_test">Unit Test</strong>
+          <span>Mỗi từ một câu, trộn Nhớ, Hiểu và Vận dụng</span>
+          <small id="unit-test-status" class="muted">Chưa làm</small>
+        </button>
+
+        <div class="section-head">
+          <h2 data-i18n="word_list">Danh sách từ</h2>
+          <p class="muted small">Chấm màu theo độ vững (stability FSRS)</p>
+        </div>
+        <ul class="word-list glass" id="unit-word-list"></ul>
+      </section>
+
+      <!-- ==================================================================
+           3. FLASHCARD
+           ================================================================== -->
+      <section class="screen" id="screen-flashcard" data-screen="flashcard" aria-labelledby="fc-title">
+        <div class="topbar">
+          <button class="icon-btn" type="button" data-action="back" aria-label="Thoát flashcard">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+          </button>
+          <div class="topbar__title">
+            <h2 id="fc-title" data-i18n="hub_flashcard">Flashcard</h2>
+            <p class="muted"><span id="fc-counter">0 / 0</span></p>
+          </div>
+          <span class="chip chip--timer" id="fc-timer" hidden title="Thời gian còn lại">5:00</span>
+        </div>
+
+        <div class="progress progress--thin" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="fc-progress">
+          <span class="progress__fill" id="fc-progress-fill" style="width:0%"></span>
+        </div>
+
+        <!-- Cảnh 3D: click / Space để lật -->
+        <div class="card-scene" id="fc-scene">
+          <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Thẻ từ vựng, nhấn để lật" aria-pressed="false">
+
+            <!-- Mặt trước: từ + IPA + từ loại -->
+            <div class="flashcard__face flashcard__face--front glass-strong">
+              <span class="box-badge" id="fc-box-badge" title="Stability (FSRS)">Từ mới</span>
+              <div class="flashcard__main">
+                <h3 class="fc-word" id="fc-word">word</h3>
+                <p class="fc-ipa" id="fc-ipa">/ipa/</p>
+                <span class="pos-tag" id="fc-pos">n.</span>
+              </div>
+              <button class="btn btn--soft" type="button" id="fc-speak" data-action="speak-current">
+                <svg class="icon" aria-hidden="true"><use href="#i-speaker"/></svg>
+                <span>Nghe phát âm</span>
+              </button>
+              <p class="flip-hint"><svg class="icon" aria-hidden="true"><use href="#i-flip"/></svg> Chạm để lật thẻ</p>
+            </div>
+
+            <!-- Mặt sau: Definition + Example (+ nghĩa tiếng Việt) -->
+            <div class="flashcard__face flashcard__face--back glass-strong">
+              <div class="flashcard__main flashcard__main--back">
+                <p class="fc-label">Definition</p>
+                <p class="fc-definition" id="fc-definition">Definition</p>
+                <!-- Câu ví dụ của sách + 2 câu bổ sung; bấm vào từng câu để nghe -->
+                <p class="fc-label">Examples (bấm câu để nghe)</p>
+                <div class="example-list" id="fc-more-list"></div>
+                <p class="fc-vi" id="fc-vi">Nghĩa tiếng Việt</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rate-row">
+          <button class="btn btn--again btn--lg" type="button" id="fc-again" data-action="fc-again">
+            <svg class="icon" aria-hidden="true"><use href="#i-cross"/></svg>
+            <span>Again</span>
+            <small data-i18n="rate_again_sub">Quên</small>
+          </button>
+          <button class="btn btn--hard btn--lg" type="button" id="fc-hard" data-action="fc-hard">
+            <span>Hard</span>
+            <small data-i18n="rate_hard_sub">Khó nhớ</small>
+          </button>
+          <button class="btn btn--good btn--lg" type="button" id="fc-good" data-action="fc-good">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <span>Good</span>
+            <small data-i18n="rate_good_sub">+10 XP</small>
+          </button>
+          <button class="btn btn--easy btn--lg" type="button" id="fc-easy" data-action="fc-easy">
+            <span>Easy</span>
+            <small data-i18n="rate_easy_sub">+12 XP</small>
+          </button>
+        </div>
+        <p class="kbd-hint muted small">Phím tắt: <kbd>Space</kbd> lật · <kbd>1</kbd> Again · <kbd>2</kbd> Hard · <kbd>3</kbd> Good · <kbd>4</kbd> Easy · <kbd>S</kbd> nghe</p>
+      </section>
+
+      <!-- ==================================================================
+           4. QUIZ
+           ================================================================== -->
+      <section class="screen" id="screen-quiz" data-screen="quiz" aria-labelledby="quiz-title">
+        <div class="topbar">
+          <button class="icon-btn" type="button" data-action="back" aria-label="Thoát quiz">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+          </button>
+          <div class="topbar__title">
+            <h2 id="quiz-title" data-i18n="hub_quiz">Quiz</h2>
+            <p class="muted"><span id="quiz-counter">0 / 0</span></p>
+          </div>
+          <span class="chip chip--xp quiz-xp" title="XP kiếm được trong lượt này">
+            <svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+            +<b id="quiz-xp">0</b>
+          </span>
+        </div>
+
+        <div class="progress progress--thin" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="quiz-progress">
+          <span class="progress__fill" id="quiz-progress-fill" style="width:0%"></span>
+        </div>
+
+        <div class="quiz-card glass-strong" id="quiz-card">
+          <p class="quiz-type" id="quiz-type-label">Word → Definition</p>
+
+          <!-- Câu hỏi: dạng 1,2 dùng #quiz-prompt; dạng 3 (Cloze) dùng thêm #quiz-sentence;
+               dạng 4 (Listening) hiện nút nghe #quiz-listen -->
+          <h3 class="quiz-prompt" id="quiz-prompt">Câu hỏi</h3>
+          <p class="quiz-sentence" id="quiz-sentence" hidden></p>
+          <button class="btn btn--soft quiz-listen" type="button" id="quiz-listen" data-action="quiz-listen" hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-speaker"/></svg>
+            <span>Nghe lại</span>
+          </button>
+
+          <div class="options" id="quiz-options" role="group" aria-label="Các đáp án"></div>
+
+          <!-- Dạng tự gõ: t_vi, t_def, dictation, cloze_t -->
+          <div class="quiz-typed" id="quiz-typed" hidden>
+            <p class="quiz-hint" id="quiz-hint" aria-live="polite"></p>
+            <div class="quiz-typed__row">
+              <input class="quiz-input" id="quiz-input" type="text" autocomplete="off" autocapitalize="off"
+                     autocorrect="off" spellcheck="false" aria-label="Câu trả lời của bạn" placeholder="Gõ đáp án rồi nhấn Enter">
+              <button class="btn btn--primary" type="button" id="quiz-submit" data-action="quiz-submit" data-i18n="check">Kiểm tra</button>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn--soft btn--sm" type="button" id="quiz-hint-btn" data-action="quiz-hint" data-i18n="hint_more">Gợi ý thêm</button>
+              <button class="btn btn--ghost btn--sm" type="button" id="quiz-skip" data-action="quiz-skip" data-i18n="i_forgot">Tôi không nhớ</button>
+            </div>
+            <p class="muted small">Dùng gợi ý thêm thì XP giảm một nửa và từ chưa được tính là đã tự nhớ.</p>
+          </div>
+
+          <!-- Dạng sắp xếp câu: unscramble -->
+          <div class="quiz-order" id="quiz-order" hidden>
+            <div class="order-answer" id="order-answer" aria-label="Câu của bạn" aria-live="polite"></div>
+            <div class="order-bank" id="order-bank" role="group" aria-label="Các từ cần xếp"></div>
+            <p class="quiz-hint" id="order-msg" role="alert"></p>
+            <div class="btn-row">
+              <button class="btn btn--primary" type="button" id="order-submit" data-action="order-submit" data-i18n="check">Kiểm tra</button>
+              <button class="btn btn--ghost" type="button" id="order-reset" data-action="order-reset" data-i18n="retry">Làm lại</button>
+            </div>
+          </div>
+
+          <!-- Dạng viết câu: write (tự chấm) -->
+          <div class="quiz-write" id="quiz-write" hidden>
+            <textarea class="quiz-input quiz-textarea" id="write-input" rows="3" spellcheck="true"
+                      aria-label="Câu tiếng Anh của bạn" placeholder="Viết một câu có dùng từ này"></textarea>
+            <p class="quiz-hint" id="write-msg" role="alert"></p>
+            <button class="btn btn--primary" type="button" id="write-submit" data-action="write-submit" data-i18n="submit_sentence">Nộp câu</button>
+            <div class="write-self" id="write-self" hidden>
+              <p class="muted">Câu mẫu để so sánh:</p>
+              <ul class="write-models" id="write-models"></ul>
+              <p><b>Câu của bạn đã dùng từ đúng nghĩa và đúng ngữ pháp chưa?</b></p>
+              <div class="btn-row">
+                <button class="btn btn--good" type="button" id="write-ok" data-action="write-ok" data-i18n="i_used_right">Tôi dùng đúng</button>
+                <button class="btn btn--again" type="button" id="write-bad" data-action="write-bad" data-i18n="need_fix">Cần sửa lại</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phản hồi tức thì sau mỗi câu -->
+          <div class="feedback" id="quiz-feedback" hidden aria-live="polite">
+            <div class="feedback__head">
+              <span class="feedback__icon" id="quiz-feedback-icon" aria-hidden="true"></span>
+              <strong id="quiz-feedback-title">Chính xác!</strong>
+              <span class="feedback__xp" id="quiz-feedback-xp">+15 XP</span>
+            </div>
+            <p id="quiz-feedback-detail" class="muted"></p>
+            <button class="btn btn--primary" type="button" id="quiz-next" data-action="quiz-next">Câu tiếp theo</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           5. STORY
+           ================================================================== -->
+      <section class="screen" id="screen-story" data-screen="story" aria-labelledby="story-title">
+        <div class="topbar">
+          <button class="icon-btn" type="button" data-action="back" aria-label="Thoát story">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+          </button>
+          <div class="topbar__title">
+            <h2 id="story-unit-title">Unit 1</h2>
+            <p class="muted">Story mode</p>
+          </div>
+          <button class="btn btn--soft btn--sm" type="button" id="story-read-all" data-action="story-read-all">
+            <svg class="icon" aria-hidden="true"><use href="#i-speaker"/></svg>
+            <span>Nghe cả truyện</span>
+          </button>
+        </div>
+
+        <article class="story glass-strong">
+          <h3 class="story__title" id="story-title">Tên câu chuyện</h3>
+          <!-- app.js chèn các đoạn <p> với từ mục tiêu bọc trong <button class="hl-word" data-word-id="1-1"> -->
+          <div class="story__text" id="story-text"></div>
+        </article>
+
+        <div class="glass panel story-words">
+          <h3>Từ mục tiêu trong bài</h3>
+          <div class="chip-cloud" id="story-wordlist"></div>
+        </div>
+
+        <!-- Popup từ vựng: hover (desktop) hoặc click (mobile) -->
+        <div class="word-popup glass-strong" id="word-popup" role="dialog" aria-labelledby="wp-word" hidden>
+          <button class="icon-btn icon-btn--sm word-popup__close" type="button" data-action="close-popup" aria-label="Đóng">
+            <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+          </button>
+          <div class="word-popup__head">
+            <h4 id="wp-word">word</h4>
+            <span class="pos-tag" id="wp-pos">n.</span>
+            <button class="icon-btn icon-btn--sm" type="button" id="wp-speak" data-action="popup-speak" aria-label="Nghe phát âm">
+              <svg class="icon" aria-hidden="true"><use href="#i-speaker"/></svg>
+            </button>
+          </div>
+          <p class="fc-ipa" id="wp-ipa">/ipa/</p>
+          <p id="wp-definition">Definition</p>
+          <p class="fc-example" id="wp-example">Example</p>
+          <p class="fc-vi" id="wp-vi">Nghĩa tiếng Việt</p>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           6. REVIEW TODAY (Leitner)
+           ================================================================== -->
+      <section class="screen" id="screen-review" data-screen="review" aria-labelledby="review-title">
+        <div class="topbar">
+          <button class="icon-btn" type="button" data-nav="dashboard" aria-label="Về trang chủ — 4000 Essential English Word II">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+          </button>
+          <div class="topbar__title">
+            <h2 id="review-title" data-i18n="review_today">Review Today</h2>
+            <p class="muted">Ôn các từ đã đến hạn</p>
+          </div>
+        </div>
+
+        <div class="glass panel review-summary" id="review-summary">
+          <div class="review-count">
+            <strong id="review-due-total">0</strong>
+            <span>từ đến hạn ôn</span>
+          </div>
+          <!-- 5 cột tương ứng 5 hộp Leitner; app.js đặt chiều cao qua style="--h: %" -->
+          <div class="box-bars" id="review-boxes" aria-label="Số từ đến hạn theo độ vững">
+            <div class="box-bar" data-box="1"><span class="box-bar__fill" style="--h:0%"></span><b>0</b><small>&lt;2 ngày</small></div>
+            <div class="box-bar" data-box="2"><span class="box-bar__fill" style="--h:0%"></span><b>0</b><small>&lt;7 ngày</small></div>
+            <div class="box-bar" data-box="3"><span class="box-bar__fill" style="--h:0%"></span><b>0</b><small>&lt;21 ngày</small></div>
+            <div class="box-bar" data-box="4"><span class="box-bar__fill" style="--h:0%"></span><b>0</b><small>&lt;60 ngày</small></div>
+            <div class="box-bar" data-box="5"><span class="box-bar__fill" style="--h:0%"></span><b>0</b><small>≥60 ngày</small></div>
+          </div>
+          <div class="review-actions">
+            <button class="btn btn--primary btn--lg" type="button" id="review-start-flashcard" data-action="review-flashcard">
+              <svg class="icon" aria-hidden="true"><use href="#i-cards"/></svg>
+              <span data-i18n="review_by_flashcard">Ôn bằng Flashcard</span>
+            </button>
+            <button class="btn btn--ghost btn--lg" type="button" id="review-start-quiz" data-action="review-quiz">
+              <svg class="icon" aria-hidden="true"><use href="#i-quiz"/></svg>
+              <span data-i18n="review_by_quiz">Ôn bằng Quiz</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hiện khi không có từ nào đến hạn -->
+        <div class="glass panel empty-state" id="review-empty" hidden>
+          <svg class="icon empty-state__icon" aria-hidden="true"><use href="#i-check"/></svg>
+          <h3>Hôm nay không còn từ nào cần ôn</h3>
+          <p class="muted">Hãy học thêm từ mới ở một Unit, các từ sẽ xuất hiện ở đây khi đến hạn.</p>
+          <button class="btn btn--primary" type="button" data-nav="dashboard" data-i18n="pick_unit">Chọn Unit để học</button>
+        </div>
+
+        <div class="section-head">
+          <h2>Từ đến hạn</h2>
+        </div>
+        <ul class="word-list glass" id="review-due-list"></ul>
+      </section>
+
+      <!-- ==================================================================
+           7. KẾT QUẢ (sau Flashcard / Quiz)
+           ================================================================== -->
+      <section class="screen" id="screen-results" data-screen="results" aria-labelledby="result-title">
+        <div class="glass-strong panel results">
+          <div class="results__medal" id="result-medal" aria-hidden="true">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+          </div>
+          <h2 id="result-title">Hoàn thành!</h2>
+          <p class="muted" id="result-subtitle">Bạn đã hoàn thành lượt học này.</p>
+
+          <div class="results__stats">
+            <div><strong id="result-score">0 / 0</strong><span>đúng</span></div>
+            <div><strong id="result-accuracy">0%</strong><span>chính xác</span></div>
+            <div><strong id="result-xp">+0</strong><span>XP</span></div>
+          </div>
+
+          <p class="results__note" id="result-note" hidden></p>
+
+          <div class="results__actions">
+            <button class="btn btn--primary btn--lg" type="button" id="result-retry" data-action="result-retry" data-i18n="keep_learning">Học tiếp</button>
+            <button class="btn btn--ghost btn--lg" type="button" data-nav="dashboard" data-i18n="back_home">Về trang chủ</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         BOTTOM NAV (mobile) / thanh điều hướng chính
+         ==================================================================== -->
+    <nav class="bottom-nav glass" id="bottom-nav" aria-label="Điều hướng chính" data-i18n-aria="nav_aria">
+      <button type="button" class="nav-item is-active" data-nav="dashboard">
+        <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
+        <span data-i18n="nav_home">Trang chủ</span>
+      </button>
+      <button type="button" class="nav-item" data-nav="review">
+        <svg class="icon" aria-hidden="true"><use href="#i-review"/></svg>
+        <span data-i18n="nav_review">Ôn tập</span>
+        <em class="nav-badge" id="nav-due-badge" hidden>0</em>
+      </button>
+      <button type="button" class="nav-item" data-action="open-settings">
+        <svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg>
+        <span data-i18n="nav_settings">Cài đặt</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: CÀI ĐẶT
+       ====================================================================== -->
+  <div class="modal" id="modal-settings" hidden>
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__dialog glass-strong" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="modal__head">
+        <h2 id="settings-title" data-i18n="settings_title">Cài đặt</h2>
+        <button class="icon-btn icon-btn--sm" type="button" data-action="close-modal" aria-label="Đóng cài đặt" data-i18n-aria="close_settings">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+
+      <div class="settings">
+        <label class="setting">
+          <span class="setting__text"><strong data-i18n="set_sound">Âm thanh hiệu ứng</strong><small data-i18n="set_sound_sub">Tiếng đúng, sai, lên cấp</small></span>
+          <input class="switch" type="checkbox" id="set-sound" role="switch">
+        </label>
+
+        <label class="setting">
+          <span class="setting__text"><strong data-i18n="set_dark">Dark mode</strong><small data-i18n="set_dark_sub">Giao diện tối, dịu mắt khi học buổi tối</small></span>
+          <input class="switch" type="checkbox" id="set-dark" role="switch">
+        </label>
+
+        <label class="setting setting--stack">
+          <span class="setting__text"><strong data-i18n="set_rate">Tốc độ đọc</strong><small><span data-i18n="set_rate_sub">Hiện tại</span>: <b id="set-rate-value">0.9</b>x</small></span>
+          <input class="range" type="range" id="set-rate" min="0.5" max="1.4" step="0.05" value="0.9">
+        </label>
+
+        <label class="setting setting--stack">
+          <span class="setting__text"><strong data-i18n="set_voice">Giọng đọc</strong><small data-i18n="set_voice_sub">Tùy theo giọng có sẵn trên thiết bị</small></span>
+          <select class="select" id="set-voice"><option value="">Tự động (tiếng Anh)</option></select>
+        </label>
+
+        <div class="setting setting--stack">
+          <span class="setting__text"><strong data-i18n="set_accounts">Tài khoản học</strong><small data-i18n="set_accounts_sub">Nhiều hồ sơ trên máy này, không cần mật khẩu</small></span>
+          <button class="btn btn--soft" type="button" data-action="open-profiles">
+            <span data-i18n="manage_profiles">Quản lý hồ sơ</span>
+          </button>
+        </div>
+
+        <!-- Cloud sync -->
+        <div class="setting setting--stack" id="cloud-sync-block">
+          <span class="setting__text">
+            <strong data-i18n="set_cloud">Đồng bộ đám mây</strong>
+            <small id="cloud-status" data-i18n="set_cloud_sub">Đồng bộ tiến độ giữa các thiết bị qua Firebase</small>
+          </span>
+          <div class="btn-row" id="cloud-actions">
+            <button class="btn btn--primary" type="button" id="btn-cloud-anon" data-action="cloud-sign-in-anon">
+              <span data-i18n="cloud_anon">Bật đồng bộ (ẩn danh)</span>
+            </button>
+            <button class="btn btn--soft" type="button" id="btn-cloud-google" data-action="cloud-sign-in-google">
+              <span data-i18n="cloud_google">Đăng nhập Google</span>
+            </button>
+          </div>
+          <div class="btn-row" id="cloud-signed-in" hidden>
+            <span class="chip" id="cloud-uid-chip" title="UID">—</span>
+            <button class="btn btn--soft" type="button" data-action="cloud-push">
+              <span data-i18n="cloud_push">Đẩy lên cloud</span>
+            </button>
+            <button class="btn btn--soft" type="button" data-action="cloud-pull">
+              <span data-i18n="cloud_pull">Tải về</span>
+            </button>
+            <button class="btn btn--ghost" type="button" data-action="cloud-sign-out">
+              <span data-i18n="cloud_sign_out">Đăng xuất</span>
+            </button>
+          </div>
+          <p class="muted small" id="cloud-hint" hidden>
+            Cần cấu hình Firebase trong <code>firebase-config.js</code>. Xem README.
+          </p>
+        </div>
+
+        <div class="setting setting--stack" id="install-setting" hidden>
+          <span class="setting__text"><strong data-i18n="set_install">Cài đặt ứng dụng</strong><small data-i18n="set_install_sub">Thêm Word II vào màn hình chính để học offline</small></span>
+          <button class="btn btn--soft" type="button" data-action="install-app" data-i18n="install_btn">Cài app</button>
+        </div>
+
+        <div class="setting setting--stack">
+          <span class="setting__text"><strong data-i18n="set_backup">Sao lưu tiến độ</strong><small data-i18n="set_backup_sub">Xuất ra file JSON hoặc nhập lại từ file đã lưu</small></span>
+          <div class="btn-row">
+            <button class="btn btn--soft" type="button" id="btn-export" data-action="export-progress">
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="export_progress">Xuất tiến độ</span>
+            </button>
+            <button class="btn btn--soft" type="button" id="btn-import" data-action="import-progress">
+              <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg><span data-i18n="import_progress">Nhập tiến độ</span>
+            </button>
+            <input type="file" id="import-file" accept="application/json,.json" hidden>
+          </div>
+        </div>
+
+        <div class="setting setting--stack setting--danger">
+          <span class="setting__text"><strong data-i18n="set_reset">Xóa toàn bộ tiến độ</strong><small data-i18n="set_reset_sub">Đưa mọi thứ về ban đầu. Không thể hoàn tác.</small></span>
+          <button class="btn btn--danger" type="button" id="btn-reset" data-action="reset-progress">
+            <svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg><span data-i18n="reset_progress">Xóa tiến độ</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LEARNER PROFILES -->
+  <div class="modal" id="modal-profiles" hidden>
+    <div class="modal__backdrop" data-action="close-profiles"></div>
+    <div class="modal__dialog glass-strong" role="dialog" aria-modal="true" aria-labelledby="profiles-title">
+      <div class="modal__head">
+        <h2 id="profiles-title" data-i18n="profiles_title">Tài khoản học</h2>
+        <button class="icon-btn icon-btn--sm" type="button" data-action="close-profiles" aria-label="Đóng">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+
+      <div class="profiles">
+        <p class="muted small">Mỗi tài khoản giữ <strong>toàn bộ</strong> việc học riêng: XP, level, streak, tiến độ từng từ (FSRS), unit đã xong, unit test. Có thể đồng bộ đám mây trong Cài đặt.</p>
+        <p class="muted small" id="persist-hint" hidden>Trình duyệt đã đánh dấu dữ liệu học là persistent (không tự xóa).</p>
+
+        <ul class="profile-list" id="profile-list" role="list"></ul>
+
+        <div class="profile-add">
+          <input class="input" type="text" id="profile-name-input" maxlength="40" placeholder="Tên tài khoản" autocomplete="off">
+          <button class="btn btn--primary" type="button" data-action="add-profile" data-i18n="add_profile">Thêm tài khoản</button>
+        </div>
+
+        <p class="muted small" id="profile-streak-line">Streak hiện tại: 0 · Best: 0</p>
+
+        <div class="btn-row profile-backup-row">
+          <button class="btn btn--soft" type="button" data-action="profile-export-file" data-i18n="export_file">Xuất file</button>
+          <button class="btn btn--soft" type="button" data-action="profile-copy-code" data-i18n="copy_code">Copy mã</button>
+        </div>
+
+        <label class="setting setting--stack">
+          <span class="setting__text"><strong>Import</strong><small>Dán mã sao lưu hoặc chọn file</small></span>
+          <textarea class="input textarea" id="profile-import-code" rows="3" placeholder="Dán mã sao lưu"></textarea>
+        </label>
+        <div class="btn-row profile-import-row">
+          <label class="radio-pill"><input type="radio" name="import-mode" value="merge" checked> Merge</label>
+          <label class="radio-pill"><input type="radio" name="import-mode" value="overwrite"> Overwrite</label>
+          <button class="btn btn--primary" type="button" data-action="profile-import" data-i18n="import_btn">Import</button>
+          <button class="btn btn--soft" type="button" data-action="profile-import-file" data-i18n="from_file">Từ file…</button>
+          <input type="file" id="profile-import-file" accept="application/json,.json,text/plain" hidden>
+        </div>
+
+        <div class="btn-row btn-row--end" style="margin-top:14px">
+          <button class="btn btn--ghost" type="button" data-action="close-profiles" data-i18n="close">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XÁC NHẬN (dùng chung cho reset / import) -->
+  <div class="modal" id="modal-confirm" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog modal__dialog--sm glass-strong" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <h2 id="confirm-title" data-i18n="confirm_title">Xác nhận</h2>
+      <p id="confirm-text" class="muted">Bạn có chắc không?</p>
+      <div class="btn-row btn-row--end">
+        <button class="btn btn--ghost" type="button" id="confirm-cancel" data-i18n="cancel">Hủy</button>
+        <button class="btn btn--danger" type="button" id="confirm-ok" data-i18n="ok">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: ONBOARDING (lần đầu mở app) -->
+  <div class="onboard" id="onboard" hidden role="dialog" aria-modal="true" aria-labelledby="onboard-title">
+    <div class="onboard__card glass-strong">
+      <div class="onboard__progress" aria-hidden="true">
+        <span class="onboard__dot is-active" data-step="0"></span>
+        <span class="onboard__dot" data-step="1"></span>
+        <span class="onboard__dot" data-step="2"></span>
+        <span class="onboard__dot" data-step="3"></span>
+      </div>
+
+      <div class="onboard__step is-active" data-step="0">
+        <div class="onboard__icon" aria-hidden="true">📚</div>
+        <h2 id="onboard-title" data-i18n="ob_welcome_title">Chào mừng đến Word II</h2>
+        <p class="muted" data-i18n="ob_welcome_body">600 từ thiết yếu (Book 2) với flashcard, quiz, truyện ngắn và thuật toán FSRS giúp bạn nhớ lâu hơn.</p>
+      </div>
+
+      <div class="onboard__step" data-step="1" hidden>
+        <div class="onboard__icon" aria-hidden="true">🃏</div>
+        <h2 data-i18n="ob_fsrs_title">Đánh giá thẻ như thế nào?</h2>
+        <p class="muted" data-i18n="ob_fsrs_body">Sau mỗi thẻ, chọn mức nhớ. App sẽ xếp lịch ôn lại đúng lúc bạn sắp quên.</p>
+        <ul class="onboard__rates">
+          <li><span class="ob-rate ob-rate--again">Again</span> <span data-i18n="ob_rate_again">Quên — ôn lại ngay</span></li>
+          <li><span class="ob-rate ob-rate--hard">Hard</span> <span data-i18n="ob_rate_hard">Khó nhớ — ôn sớm hơn</span></li>
+          <li><span class="ob-rate ob-rate--good">Good</span> <span data-i18n="ob_rate_good">Nhớ được — lịch bình thường</span></li>
+          <li><span class="ob-rate ob-rate--easy">Easy</span> <span data-i18n="ob_rate_easy">Rất dễ — giãn cách dài hơn</span></li>
+        </ul>
+      </div>
+
+      <div class="onboard__step" data-step="2" hidden>
+        <div class="onboard__icon" aria-hidden="true">🔥</div>
+        <h2 data-i18n="ob_habit_title">Học đều mỗi ngày</h2>
+        <p class="muted" data-i18n="ob_habit_body">Mở <strong>Review Today</strong> để ôn đúng những từ đến hạn. Giữ streak để nhận thêm XP và nhớ bền hơn.</p>
+        <ul class="onboard__tips">
+          <li data-i18n="ob_tip_1">10–15 phút mỗi ngày hiệu quả hơn học dồn</li>
+          <li data-i18n="ob_tip_2">Đọc Story để gặp từ trong ngữ cảnh thật</li>
+          <li data-i18n="ob_tip_3">Làm Unit Test khi thấy đã vững</li>
+        </ul>
+      </div>
+
+      <div class="onboard__step" data-step="3" hidden>
+        <div class="onboard__icon" aria-hidden="true">🚀</div>
+        <h2 data-i18n="ob_ready_title">Sẵn sàng bắt đầu?</h2>
+        <p class="muted" data-i18n="ob_ready_body">Bắt đầu với Unit 1 — The Twelve Months. Bạn có thể đổi hồ sơ và bật đồng bộ đám mây trong Cài đặt bất cứ lúc nào.</p>
+      </div>
+
+      <div class="onboard__actions">
+        <button class="btn btn--ghost" type="button" id="onboard-skip" data-action="onboard-skip" data-i18n="ob_skip">Bỏ qua</button>
+        <button class="btn btn--primary" type="button" id="onboard-next" data-action="onboard-next" data-i18n="ob_next">Tiếp tục</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: LEVEL UP -->
+  <div class="levelup" id="levelup" hidden role="status" aria-live="assertive">
+    <div class="levelup__card glass-strong">
+      <p class="levelup__kicker" data-i18n="levelup_kicker">Lên cấp!</p>
+      <strong class="levelup__number" id="levelup-number">2</strong>
+      <p class="muted">Bạn đã đạt Level <b id="levelup-number-text">2</b>. Tiếp tục phát huy nhé.</p>
+      <button class="btn btn--primary" type="button" data-action="close-levelup" data-i18n="continue">Tiếp tục</button>
+    </div>
+  </div>
+
+  <!-- TOAST: thông báo ngắn (XP, streak, lỗi import...) -->
+  <div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- CONFETTI: vẽ bằng canvas, pointer-events: none -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ======================================================================
+       TEMPLATES cho app.js (clone bằng template.content.cloneNode(true))
+       ====================================================================== -->
+
+  <!-- Thẻ Unit trên Dashboard.
+       data-status: new | learning | done | placeholder (Unit chưa có dữ liệu) -->
+  <template id="tpl-unit-card">
+    <button type="button" class="unit-card glass" data-unit-id="" data-status="new">
+      <span class="unit-card__top">
+        <strong class="unit-card__title">Unit 1</strong>
+        <span class="status-chip">Chưa học</span>
+      </span>
+      <span class="unit-card__story">Tên câu chuyện</span>
+      <span class="unit-card__progress">
+        <span class="progress progress--thin" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="progress__fill" style="width:0%"></span>
+        </span>
+        <span class="unit-card__pct"><b class="unit-card__mastered">0</b>/<span class="unit-card__total">20</span> từ · <b class="unit-card__percent">0%</b></span>
+      </span>
+      <span class="unit-card__due" hidden><b class="unit-card__due-count">0</b> từ cần ôn</span>
+      <span class="unit-card__test" hidden><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Unit Test đạt <b class="unit-card__test-score">0</b>%</span>
+      <svg class="icon unit-card__lock" aria-hidden="true" hidden><use href="#i-lock"/></svg>
+    </button>
+  </template>
+
+  <!-- Một dòng trong danh sách từ (Unit hub và Review Today). data-box: 0 = chưa học, 1..5 -->
+  <template id="tpl-word-row">
+    <li class="word-row" data-word-id="" data-box="0">
+      <span class="box-dot" aria-hidden="true"></span>
+      <span class="word-row__main">
+        <strong class="word-row__word">word</strong>
+        <span class="word-row__ipa">/ipa/</span>
+        <span class="pos-tag word-row__pos">n.</span>
+      </span>
+      <span class="word-row__text">
+        <span class="word-row__def">definition</span>
+        <span class="word-row__example">example sentence</span>
+        <button class="word-row__more" type="button" data-action="row-more" aria-expanded="false">Xem thêm ví dụ</button>
+        <span class="word-row__extras example-list" hidden></span>
+      </span>
+      <button class="icon-btn icon-btn--sm" type="button" data-action="row-speak" aria-label="Nghe phát âm">
+        <svg class="icon" aria-hidden="true"><use href="#i-speaker"/></svg>
+      </button>
+    </li>
+  </template>
+
+  <noscript>
+    <p class="noscript">Ứng dụng cần JavaScript để hoạt động. Hãy bật JavaScript trong trình duyệt.</p>
+  </noscript>
+
+  <!-- Thứ tự quan trọng: data.js (dữ liệu) trước, app.js (logic) sau.
+       Dùng thẻ script thường (không dùng ES module) để mở trực tiếp bằng file:// không bị lỗi CORS. -->
+  <script src="firebase-config.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (e) {
+          console.warn('[SW]', e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
